@@ -17,7 +17,7 @@ app.get("/", async (req, res, next) => {
 });
 
 //Recieve request 
-app.use("/user", ApiRouter);
+app.use("/api", ApiRouter);
 
 
 

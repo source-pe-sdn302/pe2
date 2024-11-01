@@ -9,7 +9,6 @@ ApiRouter.post("/create", async (req, res, next) => {
     try {
         const { gmail, password, name, phone, address, role } = req.body;
         const newUser = await db.User.create({ gmail, password, name, phone, address, role });
-
         //Insert one
         await newUser.save().then(newDoc => {
             res.status(201).json({
@@ -25,8 +24,13 @@ ApiRouter.post("/create", async (req, res, next) => {
                 }
             });
         });
-    } catch (err) {
-        next(err);
+    } catch (error) {
+        res.status(500).json({
+            error: {
+                status: 500,
+                message: error.message
+            }
+        })
     }
 });
 
