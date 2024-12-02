@@ -32,7 +32,12 @@ const employeeSchema = new mongoose.Schema({
     ref: "department",
   },
   account: {
-    email: String,
+    email: {
+      type: String,
+      required: [true, "Email is required"],
+      unique: true,
+      match: [/\S+@\S+\.\S+/, "Please enter a valid email address"], // Regular expression for email validation
+    },
     password: String,
   },
   dependents: [
