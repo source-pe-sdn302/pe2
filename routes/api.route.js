@@ -88,6 +88,7 @@ ApiRouter.post("/department/create", async (req, res, next) => {
       description: data.description,
     });
     const employeeCretead = await db.Employee.insertMany(employees);
+
     const employeeUpdateed = await db.Employee.updateMany(
       { _id: { $in: employeeCretead.map((e) => e._id) } },
       { $set: { department: newDepartment._id } }
